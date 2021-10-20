@@ -1,11 +1,17 @@
-import React from "react";
-import Dashboard from "./components/instructor/Dashboard";
+import React from 'react';
+import { Provider } from 'react-redux';
+import makeStore from './rootRedux/store';
+import Dashboard from './Views/Lecture/instructor/Dashboard';
+
+export const store = makeStore();
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
       <Dashboard />
-    </div>
+    </Provider>
   );
 }
 

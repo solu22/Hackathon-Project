@@ -10,6 +10,7 @@ function App() {
     <>
       <Router>
         <Switch>
+          <Route exact path="/signin" component={LectureDashboard} />
           <PrivateRoute
             exact
             path="/signin"

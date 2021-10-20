@@ -11,7 +11,6 @@ export const create = async (req:Request, res:Response) => {
 
   const newStudent = new Student({
    email: body.email,
-   name: body.name
 })
 
 const savedStudent = await newStudent.save()

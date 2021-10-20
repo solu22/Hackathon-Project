@@ -1,5 +1,5 @@
 
-import { Request, Response,response } from 'express'
+import { Request, Response} from 'express'
 import Student from '../models/student'
 
 export const login = async(req:Request, res:Response)=>{

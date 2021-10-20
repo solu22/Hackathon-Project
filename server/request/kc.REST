@@ -1,0 +1,21 @@
+POST http://localhost:3001/api/kc HTTP/1.1
+content-type: application/json
+
+{   
+    
+    "description": "a person sleeps most in this group ? ",
+    "alternatives": [
+        {
+            "text": "Billi",
+            "isCorrect": true
+        },
+        {"text": "Anh"},
+        {"text": "Anil"},
+        {"text": "Pasang"},
+        {"text": "Dat"}
+    ]
+}
+
+###
+
+GET http://localhost:3001/api/kc HTTP/1.1

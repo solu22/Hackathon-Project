@@ -23,12 +23,6 @@ function createRow(title: string, description: string, status: boolean) {
   return { title, description, status };
 }
 
-interface Row {
-  title: string;
-  description: string;
-  status: boolean;
-}
-
 const rows = [
   createRow("First section", "Cover first section", true),
   createRow("Second section", "Cover second section", false),

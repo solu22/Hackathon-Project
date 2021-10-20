@@ -1,12 +1,13 @@
 import React from "react";
 import {
+  Collapse,
+  TableCell,
   Table,
   TableBody,
   TableHead,
   TableRow,
   Typography,
-} from "@material-ui/core";
-import { Collapse, TableCell } from "@mui/material";
+} from "@mui/material";
 import { Box } from "@mui/system";
 
 const KnowledgeCollaps: React.VFC<{

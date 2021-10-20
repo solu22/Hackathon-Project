@@ -1,19 +1,21 @@
+import React from "react";
 import {
+  Collapse,
+  TableCell,
   Table,
   TableBody,
   TableHead,
   TableRow,
   Typography,
-} from "@material-ui/core";
-import { Collapse, TableCell } from "@mui/material";
+} from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+
 import ResultModal from "./ResultModal";
 
 const AttendCollaps: React.VFC<{
   knowledgeResult: {
     exName: string;
-    status: string;
+    status: boolean;
     result: number;
   }[];
   open: boolean;
@@ -30,8 +32,8 @@ const AttendCollaps: React.VFC<{
             <TableRow>
               <TableCell>Exercise name</TableCell>
               <TableCell>Status</TableCell>
-              <TableCell align="right">Result</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell align="center">Result</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -40,9 +42,11 @@ const AttendCollaps: React.VFC<{
                 <TableCell component="th" scope="row">
                   {knowledgeRow.exName}
                 </TableCell>
-                <TableCell>{knowledgeRow.status}</TableCell>
-                <TableCell align="right">{knowledgeRow.result}/10</TableCell>
-                <TableCell align="right">
+                <TableCell>
+                  {knowledgeRow.status ? "Passed" : "Failed"}
+                </TableCell>
+                <TableCell align="center">{knowledgeRow.result}/10</TableCell>
+                <TableCell align="center">
                   <ResultModal
                     studentName={studentName}
                     exerciseName={knowledgeRow.exName}

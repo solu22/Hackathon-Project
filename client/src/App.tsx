@@ -1,11 +1,39 @@
 import React from "react";
-import Dashboard from "./components/instructor/Dashboard";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import LectureDashboard from "./components/instructor/LectureDashboard";
+import StudentLectureView from "./components/student/StudentLectureView";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <PrivateRoute
+            exact
+            path="/signin"
+            component={LectureDashboard}
+            condition={true}
+            redirect="/"
+          />
+          <PrivateRoute
+            exact
+            path="/instructor/lecture/:lectureId"
+            component={LectureDashboard}
+            condition={true}
+            redirect="/signin"
+          />
+          <PrivateRoute
+            exact
+            path="/student/lecture/:lectureId"
+            component={StudentLectureView}
+            condition={true}
+            redirect="/"
+          />
+        </Switch>
+      </Router>
+    </>
   );
 }
 

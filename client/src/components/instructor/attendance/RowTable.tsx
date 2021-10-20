@@ -1,18 +1,18 @@
-import * as React from "react";
+import React from "react";
 import { IconButton, TableCell, TableRow } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import AttendCollaps from "./AttendCollaps";
-
 const RowTable: React.VFC<{
   row: {
+    id: number;
     name: string;
-    status: string;
+    status: boolean;
     result: number;
     knowledgeResult: {
       exName: string;
-      status: string;
+      status: boolean;
       result: number;
     }[];
   };
@@ -34,8 +34,8 @@ const RowTable: React.VFC<{
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.status}</TableCell>
-        <TableCell align="right">
+        <TableCell align="center">{row.status ? "Passed" : "Failed"}</TableCell>
+        <TableCell align="center">
           {row.result}/{4}
         </TableCell>
       </TableRow>

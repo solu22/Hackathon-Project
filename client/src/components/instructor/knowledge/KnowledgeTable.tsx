@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Table,
   TableBody,
@@ -14,7 +14,8 @@ import RowTable from "./RowTable";
 
 const useStyles = makeStyles(() => ({
   paper: {
-    maxHeight: "70vh",
+    maxHeight: "40vh",
+    margin: 16,
   },
   button: {
     width: 180,
@@ -48,6 +49,12 @@ function createData(name: string, status: string, result: number) {
 const rows = [
   createData("Git", "Started", 4),
   createData("React", "Standby", 3),
+  createData("Git1", "Started", 4),
+  createData("Rea1ct", "Standby", 3),
+  createData("Gi2t", "Started", 4),
+  createData("Re2act", "Standby", 3),
+  createData("Gi3t", "Started", 4),
+  createData("R4eact", "Standby", 3),
 ];
 
 const KnowledgeTable: React.VFC<{}> = () => {

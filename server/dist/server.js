@@ -3,23 +3,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const middleware_1 = require("./middleware");
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-const connect_1 = __importDefault(require("./config/connect"));
-(0, connect_1.default)();
-app.use(express_1.default.json());
-const student_1 = __importDefault(require("./routes/student"));
-app.get('/', (req, res) => {
-    res.send('backend page');
-});
-app.use('/api/students', student_1.default);
-app.use(middleware_1.notFound);
-app.use(middleware_1.errorHandler);
-const PORT = process.env.PORT;
-app.listen(PORT, (req, res) => {
-    console.log(`Server started at port ${PORT}`);
+const mongoose_1 = __importDefault(require("mongoose"));
+const app_1 = __importDefault(require("./app"));
+const port = process.env.PORT;
+mongoose_1.default
+    .connect('mongodb+srv://all:all@cluster0.wtmn6.mongodb.net/Integrify?retryWrites=true&w=majority')
+    .then(() => {
+    // Start Express server
+    app_1.default.listen(port, () => {
+        console.log(`App is running at port ${port}`);
+        console.log('  Press CTRL-C to stop\n');
+    });
+})
+    .catch((error) => {
+    console.log('MongoDB connection error. Please make sure MongoDB is running. ' + error);
+    process.exit(1);
 });
 //# sourceMappingURL=server.js.map

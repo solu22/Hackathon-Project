@@ -12,11 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findAll = void 0;
-const express_async_handler_1 = __importDefault(require("express-async-handler"));
+exports.findAll = exports.create = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const student_1 = __importDefault(require("../models/student"));
-exports.findAll = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, username, password } = req.body;
+    if (!(username || password)) {
+        return res.status(400).json({ error: 'field cannot be empty' });
+    }
+    const saltRounds = 10;
+    const passwordHash = yield bcrypt_1.default.hash(password, saltRounds);
+    const newStudent = new student_1.default({
+        username,
+        name,
+        passwordHash,
+    });
+    const savedStudent = yield newStudent.save();
+    res.status(201).json(savedStudent);
+});
+exports.create = create;
+const findAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const students = yield student_1.default.find({});
     res.json(students);
-}));
+});
+exports.findAll = findAll;
 //# sourceMappingURL=student.js.map

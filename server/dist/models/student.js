@@ -8,7 +8,11 @@ const studentSchema = new mongoose_1.default.Schema({
     name: {
         type: String,
         index: true,
-    }
+    },
+    username: {
+        type: String
+    },
+    passwordHash: String
 });
 exports.default = mongoose_1.default.model('Student', studentSchema);
 //# sourceMappingURL=student.js.map

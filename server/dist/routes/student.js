@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const student_1 = require("../controller/student");
 const router = express_1.default.Router();
 router.get('/', student_1.findAll);
+router.post('/students', student_1.create);
 exports.default = router;
 //# sourceMappingURL=student.js.map

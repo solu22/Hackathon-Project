@@ -1,0 +1,8 @@
+export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const SET_QUESTIONS = 'SET_QUESTIONS';
+export const SET_ERRORS = 'SET_ERRORS';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_KC_STATUS = 'SET_KC_STATUS';
+export const SET_KC_ANSWER = 'SET_KC_ANSWER';
+export const SET_CLASS_KC_RESULT = 'SET_CLASS_KC_RESULT';
+export const SET_STUDENT_ANSWER = 'SET_STUDENT_ANSWER';

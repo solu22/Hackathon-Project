@@ -4,13 +4,17 @@ export interface Question {
   options: string[];
 }
 
-export interface Result {
-  correct: number;
-  incorrect: number;
-  total: number;
-  detail: {
-    questionId: string;
-    studentChoice: string;
-    correctChoice: string;
-  }[];
+export interface KCStatus {
+  studentId: string;
+  status: 'not started' | 'started' | 'completed';
+}
+
+export interface KCAnswer {
+  questionId: string;
+  answer: string;
+}
+
+export interface KCResult {
+  studentId: string;
+  result: any;
 }

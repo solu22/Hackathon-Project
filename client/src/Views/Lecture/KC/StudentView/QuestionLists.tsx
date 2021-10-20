@@ -3,15 +3,25 @@ import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import { Question } from '../../../../types/commonTypes';
+import { useDispatch, useSelector } from 'react-redux';
+import { getKcAnswer, setStudentAnswer } from '../redux/kcActions';
+import { RootState } from '../../../../App';
+import { Redirect } from 'react-router';
 
 interface QuestionListsProps {
   questions: Question[];
+  kcId: string;
 }
 
-export const QuestionLists: React.FC<QuestionListsProps> = ({ questions }) => {
+export const QuestionLists: React.FC<QuestionListsProps> = ({ questions, kcId }) => {
   const { handleSubmit, control } = useForm();
+  const dispatch = useDispatch();
+  // const {studentId} = useSelector((state:RootState) => state.student)
+
   const onSubmit = (fields: FieldValues) => {
-    console.log(fields);
+    dispatch(getKcAnswer(kcId, fields, ''));
+    dispatch(setStudentAnswer(fields));
+    return <Redirect to="/kc-result" />;
   };
 
   return (

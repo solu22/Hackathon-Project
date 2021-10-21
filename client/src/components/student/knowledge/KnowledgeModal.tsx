@@ -1,24 +1,32 @@
 import React, { useState } from "react";
-import { Box, Button, Typography, Modal, Paper, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  Paper,
+  Grid,
+  Divider,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useForm, SubmitHandler } from "react-hook-form";
 import KnowledgeQuestion from "../../utils/FormRadioInput";
 
 interface IFormInput {
-  [question: string]: { label: string; value: string };
+  [question: string]: string;
 }
-
 const useStyle = makeStyles(() => ({
   paper: {
-    margin: "15vh auto",
+    margin: "10vh auto",
     minHeight: 200,
-    maxHeight: 600,
+    maxHeight: 800,
     maxWidth: 800,
     padding: 32,
     overflow: "scroll",
   },
   grid: {
     marginTop: 32,
+    padding: "16px 64px",
   },
 }));
 
@@ -57,14 +65,17 @@ const knowledgeChecks = [
 
 const KnowledgeModal: React.VFC<{}> = () => {
   const [open, setOpen] = useState(false);
+  const [answer, setAnswer] = useState({} as IFormInput);
+  const [submitted, setSubmitted] = useState(false);
   const { control, handleSubmit } = useForm<IFormInput>();
   const classes = useStyle();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    setSubmitted(true);
+    setAnswer(data);
   };
-
+  console.log(answer);
   return (
     <>
       <Button variant="contained" color="primary" onClick={handleOpen}>
@@ -88,36 +99,66 @@ const KnowledgeModal: React.VFC<{}> = () => {
                 spacing={2}
                 direction="column"
                 justifyContent="center"
-                alignItems="center"
+                // alignItems="center"
               >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  {knowledgeChecks.map(
-                    ({ question, options, correctAnswer }) => {
+                {!submitted ? (
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    {knowledgeChecks.map(
+                      ({ question, options, correctAnswer }) => {
+                        return (
+                          <Grid item xs={12}>
+                            <KnowledgeQuestion
+                              key={question}
+                              control={control}
+                              name={question}
+                              options={options
+                                .concat(correctAnswer)
+                                .sort((a, b) => 0.5 - Math.random())}
+                            />
+                            <Divider />
+                          </Grid>
+                        );
+                      }
+                    )}
+                    <Grid item xs={12}>
+                      <Button
+                        fullWidth
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Submit
+                      </Button>
+                    </Grid>
+                  </form>
+                ) : (
+                  <>
+                    {knowledgeChecks.map((knowledgeCheck, index) => {
                       return (
                         <Grid item xs={12}>
-                          <KnowledgeQuestion
-                            key={question}
-                            control={control}
-                            name={question}
-                            options={options
-                              .concat(correctAnswer)
-                              .sort((a, b) => 0.5 - Math.random())}
-                          />
+                          <Typography variant="h6">
+                            Question: {knowledgeCheck.question}
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color={
+                              answer[knowledgeCheck.question] ===
+                              knowledgeCheck.correctAnswer
+                                ? "green"
+                                : "red"
+                            }
+                          >
+                            Your answer: {answer[knowledgeCheck.question]}
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            Correct answer: {knowledgeCheck.correctAnswer}
+                          </Typography>
+                          <Divider />
                         </Grid>
                       );
-                    }
-                  )}
-                  <Grid item xs={12}>
-                    <Button
-                      fullWidth
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                    >
-                      Submit
-                    </Button>
-                  </Grid>
-                </form>
+                    })}
+                  </>
+                )}
               </Grid>
             </div>
           </Paper>

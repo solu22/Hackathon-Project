@@ -1,12 +1,11 @@
 import React from "react";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { Controller, FieldValues, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Redirect } from "react-router";
 
 import { Question } from "../../../../types/commonTypes";
 import { getKcAnswer, setStudentAnswer } from "../redux/kcActions";
-import { RootState } from "../../../../App";
 
 interface QuestionListsProps {
   questions: Question[];

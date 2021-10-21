@@ -9,7 +9,7 @@ import {
 import { Controller, Control } from "react-hook-form";
 
 interface IFormInput {
-  [question: string]: { label: string; value: string };
+  [question: string]: string;
 }
 
 const KnowledgeQuestion: React.VFC<{
@@ -25,7 +25,7 @@ const KnowledgeQuestion: React.VFC<{
         const { onBlur, onChange, value } = field;
         return (
           <FormControl component="fieldset">
-            <FormLabel component="legend">{name}</FormLabel>
+            <FormLabel component="legend">Question: {name}</FormLabel>
 
             <RadioGroup value={value} onBlur={onBlur} onChange={onChange}>
               {options.map((option) => {

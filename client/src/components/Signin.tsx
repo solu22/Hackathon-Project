@@ -7,8 +7,6 @@ import { useHistory } from "react-router";
 
 interface IFormInput {
   email: string;
-  lastName: string;
-  iceCreamType: { label: string; value: string };
 }
 
 const useStyle = makeStyles(() => ({

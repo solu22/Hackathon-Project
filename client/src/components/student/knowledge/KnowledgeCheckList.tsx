@@ -10,6 +10,7 @@ import {
   Paper,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import KnowledgeModal from "./KnowledgeModal";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -51,9 +52,7 @@ const KnowledgeCheckList: React.VFC<{}> = () => {
                 {row.status ? "Passed" : "Failed"}
               </TableCell>
               <TableCell align="center">
-                <Button variant="contained" color="primary" disabled>
-                  Ended
-                </Button>
+                <KnowledgeModal />
               </TableCell>
             </TableRow>
           ))}

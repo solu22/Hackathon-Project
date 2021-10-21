@@ -107,8 +107,16 @@ const KnowledgeModal: React.VFC<{}> = () => {
                       );
                     }
                   )}
-
-                  <input type="submit" />
+                  <Grid item xs={12}>
+                    <Button
+                      fullWidth
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                    >
+                      Submit
+                    </Button>
+                  </Grid>
                 </form>
               </Grid>
             </div>

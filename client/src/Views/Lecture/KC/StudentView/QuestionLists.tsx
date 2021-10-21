@@ -1,25 +1,28 @@
-import React from 'react';
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { Controller, FieldValues, useForm } from 'react-hook-form';
+import React from "react";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { Controller, FieldValues, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
-import { Question } from '../../../../types/commonTypes';
-import { useDispatch, useSelector } from 'react-redux';
-import { getKcAnswer, setStudentAnswer } from '../redux/kcActions';
-import { RootState } from '../../../../App';
-import { Redirect } from 'react-router';
+import { Question } from "../../../../types/commonTypes";
+import { getKcAnswer, setStudentAnswer } from "../redux/kcActions";
+import { RootState } from "../../../../App";
 
 interface QuestionListsProps {
   questions: Question[];
   kcId: string;
 }
 
-export const QuestionLists: React.FC<QuestionListsProps> = ({ questions, kcId }) => {
+export const QuestionLists: React.FC<QuestionListsProps> = ({
+  questions,
+  kcId,
+}) => {
   const { handleSubmit, control } = useForm();
   const dispatch = useDispatch();
   // const {studentId} = useSelector((state:RootState) => state.student)
 
   const onSubmit = (fields: FieldValues) => {
-    dispatch(getKcAnswer(kcId, fields, ''));
+    dispatch(getKcAnswer(kcId, fields, ""));
     dispatch(setStudentAnswer(fields));
     return <Redirect to="/kc-result" />;
   };
@@ -38,7 +41,12 @@ export const QuestionLists: React.FC<QuestionListsProps> = ({ questions, kcId })
               return (
                 <RadioGroup {...field}>
                   {options.map((option, index) => (
-                    <FormControlLabel key={index} value={option} control={<Radio />} label={option} />
+                    <FormControlLabel
+                      key={index}
+                      value={option}
+                      control={<Radio />}
+                      label={option}
+                    />
                   ))}
                 </RadioGroup>
               );

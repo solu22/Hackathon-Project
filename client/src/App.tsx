@@ -15,32 +15,34 @@ export type AppDispatch = typeof store.dispatch;
 function App() {
   return (
     <>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Signin} />
-          {/* <PrivateRoute
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Signin} />
+            {/* <PrivateRoute
             exact
             path="/signin"
             component={Signin}
             condition={true}
             redirect="/"
           /> */}
-          <PrivateRoute
-            exact
-            path="/instructor/lecture/:lectureId"
-            component={LectureDashboard}
-            condition={true}
-            redirect="/signin"
-          />
-          <PrivateRoute
-            exact
-            path="/student/lecture/:lectureId"
-            component={StudentLectureView}
-            condition={true}
-            redirect="/"
-          />
-        </Switch>
-      </Router>
+            <PrivateRoute
+              exact
+              path="/instructor/lecture/:lectureId"
+              component={LectureDashboard}
+              condition={true}
+              redirect="/signin"
+            />
+            <PrivateRoute
+              exact
+              path="/student/lecture/:lectureId"
+              component={StudentLectureView}
+              condition={true}
+              redirect="/"
+            />
+          </Switch>
+        </Router>
+      </Provider>
     </>
   );
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+
 import KnowledgeCheckList from "./knowledge/KnowledgeCheckList";
 import AttendanceList from "./attendance/AttendanceList";
+import participants from "../../MOCK_DATA_updated.json";
 
 // const lecture = {
 //   title: "Test lecture",
@@ -176,7 +178,7 @@ const StudentLectureView: React.VFC<{}> = () => {
               <KnowledgeCheckList />
             </Grid>
             <Grid item xs={4}>
-              <AttendanceList />
+              <AttendanceList participants={participants} />
             </Grid>
           </Grid>
         </Paper>

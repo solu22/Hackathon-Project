@@ -11,7 +11,6 @@ import {
 import { makeStyles } from "@mui/styles";
 
 import RowTable from "./RowTable";
-import data from "../../../MOCK_DATA.json";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -24,39 +23,6 @@ const useStyles = makeStyles(() => ({
     alignSelf: "flex-end",
   },
 }));
-
-function createData(
-  name: string,
-  status: string,
-  result: number,
-  price: number
-) {
-  return {
-    name,
-    status,
-    result,
-    knowledgeResult: [
-      {
-        exName: "Git",
-        status: "Passed",
-        result: 8,
-      },
-      {
-        exName: "React",
-        status: "Failed",
-        result: 4,
-      },
-    ],
-  };
-}
-
-const rows = [
-  createData("An", "Attended", 4, 3.99),
-  createData("Dat", "Attended", 3, 4.99),
-  createData("Pasang", "Missing", 0, 3.79),
-  createData("Bili", "Attended", 3, 2.5),
-  createData("Anil", "Attended", 4, 1.5),
-];
 
 const AttendanceTable: React.VFC<{
   participants: {
@@ -83,7 +49,7 @@ const AttendanceTable: React.VFC<{
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {participants.map((row) => (
             <RowTable key={row.name} row={row} />
           ))}
         </TableBody>

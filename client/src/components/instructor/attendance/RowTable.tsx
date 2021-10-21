@@ -8,7 +8,6 @@ const RowTable: React.VFC<{
   row: {
     id: number;
     name: string;
-    status: boolean;
     result: number;
     knowledgeResult: {
       exName: string;
@@ -34,9 +33,11 @@ const RowTable: React.VFC<{
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="center">{row.status ? "Passed" : "Failed"}</TableCell>
         <TableCell align="center">
-          {row.result}/{4}
+          {row.result >= 2 ? "Passed" : "Failed"}
+        </TableCell>
+        <TableCell align="center">
+          {row.result}/{3}
         </TableCell>
       </TableRow>
       <TableRow>

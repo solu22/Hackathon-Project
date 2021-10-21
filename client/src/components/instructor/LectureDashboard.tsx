@@ -7,8 +7,6 @@ import AttendanceTable from "./attendance/AttendanceTable";
 import KnowledgeTable from "./knowledge/KnowledgeTable";
 import participants from "../../MOCK_DATA_updated.json";
 
-console.log(participants);
-
 const lecture = {
   title: "Test lecture",
   url: "what ever",
@@ -161,7 +159,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LectureDashboard: React.VFC<{}> = () => {
+const LectureDashboard: React.FC<{}> = () => {
   const classes = useStyles();
   return (
     <>

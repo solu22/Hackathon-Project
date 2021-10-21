@@ -1,9 +1,10 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Route, useRouteMatch } from 'react-router';
-import { RootState } from '../../../../App';
-import { QuestionLists } from './QuestionLists';
-import { ResultView } from './ResultView';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Route, useRouteMatch } from "react-router";
+
+import { RootState } from "../../../../App";
+import { QuestionLists } from "./QuestionLists";
+import { ResultView } from "./ResultView";
 
 interface StudentViewProps {
   kcId: string;

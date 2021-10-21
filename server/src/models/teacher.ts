@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
-const studentSchema = new mongoose.Schema({
+const TeacherSchema = new mongoose.Schema({
   name: {
     type: String,
     index: true,
@@ -17,4 +17,4 @@ const studentSchema = new mongoose.Schema({
   ],
 });
 
-export default mongoose.model('Student', studentSchema);
+export default mongoose.model('Teacher', TeacherSchema);

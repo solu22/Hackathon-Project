@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { KCAnswer, KCResult, KCStatus, Question } from '../types/commonTypes';
 
 const fetchQuestions = (kcId: string, studentId: string): Promise<AxiosResponse<Question[]>> => {
-  return axios.get(`/get-kc/${kcId}`, { data: { studentId } });
+  return axios.get(`/get-questions/${kcId}`, { data: { studentId } });
 };
 
 const fetchKcStatus = (kcId: string): Promise<AxiosResponse<KCStatus[]>> => {

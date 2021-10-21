@@ -1,10 +1,10 @@
 import express from 'express';
 
-import { findAll, registerStudent } from '../controller/student';
+import { findAll, registerTeacher } from '../controller/teacher';
 
 const router = express.Router();
 
 router.get('/', findAll);
-router.post('/register-student', registerStudent);
+router.post('/register-teacher', registerTeacher);
 
 export default router;

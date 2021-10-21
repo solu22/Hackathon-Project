@@ -51,8 +51,8 @@ const KnowledgeCheckList: React.VFC<{}> = () => {
                 {row.status ? "Passed" : "Failed"}
               </TableCell>
               <TableCell align="center">
-                <Button variant="contained" color="primary">
-                  Start
+                <Button variant="contained" color="primary" disabled>
+                  Ended
                 </Button>
               </TableCell>
             </TableRow>
@@ -60,15 +60,15 @@ const KnowledgeCheckList: React.VFC<{}> = () => {
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Total Number of Knowledge Check</TableCell>
-            <TableCell align="center">10</TableCell>
+            <TableCell align="center">3</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2}>Total Number of Completed</TableCell>
-            <TableCell align="center">8</TableCell>
+            <TableCell align="center">3</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2}>Total Number of Passed </TableCell>
-            <TableCell align="center">7</TableCell>
+            <TableCell align="center">2</TableCell>
           </TableRow>
         </TableBody>
       </Table>

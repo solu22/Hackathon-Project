@@ -48,29 +48,14 @@ function stringAvatar(name: string) {
   };
 }
 
-function createData(name: string) {
-  return { name };
-}
-
-const rows = [
-  createData("Frozen Yoghurt"),
-  createData("Ice Cream sandwich"),
-  createData("Eclair Stuff"),
-  createData("Cupcake Bun"),
-  createData("Gingerbread Run"),
-  createData("Frozen Yoghurt1"),
-  createData("Ice Cream sandwich1"),
-  createData("Eclair Stuff1"),
-  createData("Cupcake Bun1"),
-  createData("Gingerbread Run1"),
-  createData("Frozen Yoghurt2"),
-  createData("Ice Cream sandwich2"),
-  createData("Eclair Stuff2"),
-  createData("Cupcake Bun2"),
-  createData("Gingerbread Run2"),
-];
-
-const AttendanceList: React.VFC<{}> = () => {
+const AttendanceList: React.VFC<{
+  participants: {
+    id: number;
+    name: string;
+    result: number;
+    knowledgeResult: { exName: string; status: boolean; result: number }[];
+  }[];
+}> = ({ participants }) => {
   const classes = useStyles();
   return (
     <TableContainer component={Paper} className={classes.paper}>
@@ -84,17 +69,23 @@ const AttendanceList: React.VFC<{}> = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Avatar {...stringAvatar(row.name)} />
-              </TableCell>
-              <TableCell align="center">{row.name}</TableCell>
-            </TableRow>
-          ))}
+          {participants
+            .sort((a, b) => {
+              if (a.name < b.name) return -1;
+              if (a.name > b.name) return 1;
+              return 0;
+            })
+            .map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <Avatar {...stringAvatar(row.name)} />
+                </TableCell>
+                <TableCell align="center">{row.name}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

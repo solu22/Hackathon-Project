@@ -112,7 +112,7 @@ const ResultModal: React.VFC<{ studentName: string; exerciseName: string }> = ({
   return (
     <>
       <Button variant="contained" color="primary" onClick={handleOpen}>
-        Open modal
+        Check Answer
       </Button>
 
       <Modal

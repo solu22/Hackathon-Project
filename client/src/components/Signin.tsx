@@ -3,6 +3,7 @@ import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useHistory } from "react-router";
 
 interface IFormInput {
   email: string;
@@ -23,10 +24,15 @@ const useStyle = makeStyles(() => ({
 
 const Signin: React.VFC<{}> = () => {
   const classes = useStyle();
+  const history = useHistory();
   const { control, handleSubmit } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    if (data.email === "teacher@mail.com") {
+      history.push("/instructor/lecture/1");
+    } else {
+      history.push("/student/lecture/1");
+    }
   };
 
   return (

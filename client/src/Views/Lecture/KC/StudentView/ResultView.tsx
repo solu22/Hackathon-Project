@@ -1,44 +1,46 @@
-import React from 'react';
-import { Button, List, ListItem, ListItemText } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import React from "react";
+import { Button, List, ListItem, ListItemText } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../App';
-import { Link } from 'react-router-dom';
+import { RootState } from "../../../../App";
 
 const useStyles = makeStyles({
   root: {
     padding: 16,
-    border: '1px solid black',
+    border: "1px solid black",
     maxWidth: 400,
   },
 
   list: {
     padding: 16,
-    border: '1px solid black',
+    border: "1px solid black",
     maxWidth: 350,
-    margin: '0 auto',
+    margin: "0 auto",
     marginTop: 16,
   },
 
   title: {
-    alignText: 'center',
+    alignText: "center",
   },
 
   listItem: {
     margin: 8,
-    border: '1px solid black',
+    border: "1px solid black",
     borderRadius: 6,
   },
   questionDetail: {
     margin: 8,
     padding: 8,
-    border: '1px solid black',
+    border: "1px solid black",
   },
 });
 
 export const ResultView: React.FC = () => {
-  const { kcAnswer, studentAnswer } = useSelector((state: RootState) => state.kc);
+  const { kcAnswer, studentAnswer } = useSelector(
+    (state: RootState) => state.kc
+  );
 
   const correct = kcAnswer.filter(({ questionId, answer }) => {
     return studentAnswer[questionId] === answer;
@@ -54,7 +56,10 @@ export const ResultView: React.FC = () => {
           <ListItemText primary="correct" secondary={correct} />
         </ListItem>
         <ListItem className={listItem}>
-          <ListItemText primary="incorrect" secondary={kcAnswer.length - correct} />
+          <ListItemText
+            primary="incorrect"
+            secondary={kcAnswer.length - correct}
+          />
         </ListItem>
         <ListItem className={listItem}>
           <ListItemText primary="total" secondary={kcAnswer.length} />
@@ -63,7 +68,10 @@ export const ResultView: React.FC = () => {
           <div key={questionId} className={questionDetail}>
             <div>Question {index}</div>
             <ListItem>
-              <ListItemText primary="Your Choice" secondary={studentAnswer[questionId]} />
+              <ListItemText
+                primary="Your Choice"
+                secondary={studentAnswer[questionId]}
+              />
             </ListItem>
             <ListItem>
               <ListItemText primary="Correct Choice" secondary={answer} />
@@ -72,7 +80,7 @@ export const ResultView: React.FC = () => {
         ))}
       </List>
       <Button>
-        <Link to={'/lecture'}>Back</Link>
+        <Link to={"/lecture"}>Back</Link>
       </Button>
     </div>
   );

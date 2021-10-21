@@ -1,12 +1,11 @@
 import { Schema, model } from "mongoose";
-export interface Student {
-  // _id: string;
+export interface Teacher {
   email: string;
   firstName: string;
   lastName: string;
 }
 
-const StudentSchema = new Schema({
+const TeacherSchema = new Schema({
   email: {
     type: String,
   },
@@ -19,4 +18,4 @@ const StudentSchema = new Schema({
   },
 });
 
-export const StudentModel = model<Student>("Student", StudentSchema);
+export const TeacherModel = model<Teacher>("Teacher", TeacherSchema);

@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 
-import { StudentModel } from "../models/Student";
+import { TeacherModel } from "../models/Teacher";
 
 export const signin = async (req: Request, res: Response) => {
   const { email } = req.body;
 
   try {
-    const oldStudent = await StudentModel.findOne({ email });
+    const oldTeacher = await TeacherModel.findOne({ email });
 
-    if (!oldStudent) {
+    if (!oldTeacher) {
       return res.status(404).json({ message: "User does not exist" });
     }
     return res.json({ message: "Congratulations, welcome" });
@@ -22,12 +22,12 @@ export const signup = async (req: Request, res: Response) => {
   const { email, firstName, lastName } = req.body;
   // console.log(req.body);
   try {
-    const oldStudent = await StudentModel.findOne({ email });
+    const oldTeacher = await TeacherModel.findOne({ email });
 
-    if (oldStudent)
+    if (oldTeacher)
       return res.status(400).json({ message: "User already exists" });
 
-    const result = await StudentModel.create({
+    const result = await TeacherModel.create({
       email,
       name: `${firstName} ${lastName}`,
     });

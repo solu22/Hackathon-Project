@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
 import Question from '../models/knowledgeCheck'
 import mongoose from 'mongoose'
-import { ObjectId, ObjectIdLike } from 'bson';
-
 
 export const findAll=  async (req:Request, res:Response) => {
     try {
@@ -70,7 +68,7 @@ export const update =  async (req: Request, res:Response) => {
                 question.options = options
             }
             if (lecture) {
-                question.subjects = lecture.map((lec: string | number | ObjectId | Buffer | ObjectIdLike | undefined) => new mongoose.Types.ObjectId(lec))
+                question.subjects = lecture.map((lec: any) => new mongoose.Types.ObjectId(lec))
             }
             await question.save()
             return res.status(200).json(question)

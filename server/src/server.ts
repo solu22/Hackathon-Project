@@ -2,8 +2,9 @@ import mongoose from 'mongoose'
 import app from './app'
 
 const port = process.env.PORT
+const mongUri = process.env.MONGODB_URI ??''
 mongoose
-  .connect('mongodb+srv://all:all@cluster0.wtmn6.mongodb.net/Integrify?retryWrites=true&w=majority')
+  .connect(mongUri)
   .then(() => {
     // Start Express server
     app.listen(port, () => {

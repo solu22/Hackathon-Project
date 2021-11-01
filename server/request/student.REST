@@ -3,8 +3,9 @@ content-type: application/json
 
 {   
     
-    "name": "test1",
-    "email": "test1@yahoo.com"
+    "firstName": "test2",
+    "lastName": "test2",
+    "email": "test2@yahoo.com"
     
 }
 

@@ -1,13 +1,23 @@
-import mongoose from 'mongoose'
+import mongoose, { Document } from 'mongoose'
 
-export interface Lecture {
- name: string
+export type LectureDocument = Document & {
+  title: string
+  lecturer: string,
+  section: string
+
 }
 
-
-const LectureSchema = new mongoose.Schema({
-    name: String
+const lectureSchema = new mongoose.Schema({
+  title: String,
+  lecturer:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher',
+        required: false
+      }
+  ],
+  section : { type : Array , "default" : [] }
+ 
 })
 
-
-export const LectureModel = mongoose.model<Lecture>('Lecture', LectureSchema)
+export default mongoose.model<LectureDocument>('Lecture', lectureSchema)

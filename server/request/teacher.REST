@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/teachers HTTP/1.1
+content-type: application/json
+
+{   
+    
+    "firstName": "Ha",
+    "lastName": "Luong",
+    "email": "ha@Hanoi.com"
+    
+}
+
+###
+GET http://localhost:3001/api/teachers HTTP/1.1

@@ -1,6 +1,6 @@
 
-import { Request, Response,response } from 'express'
-import Student from "../models/student";
+import { Request, Response} from 'express'
+import Teacher from "../models/teacher";
 
 export const create = async (req:Request, res:Response) => {
   const body = req.body
@@ -9,19 +9,18 @@ export const create = async (req:Request, res:Response) => {
   }
 
 
-  const newStudent = new Student({
+  const newTeacher = new Teacher({
    email: body.email,
    firstName: body.firstName,
    lastName: body.lastName
 })
 
-const savedStudent = await newStudent.save()
-res.status(201).json(newStudent)
+const savedTeacher = await newTeacher.save()
+res.status(201).json(newTeacher)
 };
 
 
 export const findAll = async (req:Request, res:Response) => {
-   const students = await Student.find({});
-   res.json(students);
+   const teachers = await Teacher.find({});
+   res.json(teachers);
 };
-

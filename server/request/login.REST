@@ -1,7 +1,7 @@
-POST http://localhost:3001/api/login HTTP/1.1
+POST http://localhost:3001/api/teacherLogin HTTP/1.1
 Content-Type: application/json
 
 {
 
-    "email": "test1@yahoo.com"
+    "email": "ha@Hanoi.com"
 }
